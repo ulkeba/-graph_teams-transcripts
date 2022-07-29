@@ -21,9 +21,12 @@ if __name__ == "__main__":
     }  
 
     res = requests.get(f"https://graph.microsoft.com/beta/users/{os.environ['USER_ID']}/onlineMeetings?$filter=JoinWebUrl%20eq%20'{os.environ['MEETING_URL']}'", headers=headers)
-    onl_meet_data = res.json()['value'][0]['id']
+    online_meeting_id = res.json()['value'][0]['id']
 
-    trans_res = requests.get(f"https://graph.microsoft.com/beta/users/{os.environ['USER_ID']}/onlineMeetings/{onl_meet_data}/transcripts", headers=headers)
-    trans_res_data = trans_res.json()['value']
+    transcript_res = requests.get(f"https://graph.microsoft.com/beta/users/{os.environ['USER_ID']}/onlineMeetings/{online_meeting_id}/transcripts", headers=headers)
+    transcript_id = transcript_res.json()['value'][0]['id']
 
-    print(onl_meet_data)
+    transcript_content_res = requests.get(f"https://graph.microsoft.com/beta/users/{os.environ['USER_ID']}/onlineMeetings/{online_meeting_id}/transcripts{transcript_id}/content", headers=headers)
+    transcript_content_data = transcript_content_res.json()['value']
+
+    print(transcript_content_data)
