@@ -27,13 +27,13 @@ Grant-CsApplicationAccessPolicy -PolicyName $PolicyName -Global
 ```
 
 # Define environment variables
-- Get ID of meeting ID.
-  - Either from event sent, for example, to Azure Function.
-  - Or -- for testing purposes -- from Microsoft Teams Admin Center (_Note_ It might take some minutes after a meeting has ended until it appears in the admin center):
+- Get ID of meeting ID from Microsoft Teams Admin Center (_Note_ It might take some minutes after a meeting has ended until it appears in the admin center):
     - Go to "Manage Users".
     - Navigate to meeting organizer.
     - Navigate to 'Meetings & calls'
     - In table 'Past Meetings' wait for meeting and get meeting ID from the first column.
+
+(_Note_ To get a meeting identifier programmatically, you might want to explore the options to [Get the callRecord](https://learn.microsoft.com/en-us/graph/api/callrecords-callrecord-get?view=graph-rest-1.0&tabs=http), subscribe to change notifications (e.g., using an Azure Function) and use the [`joinWebUrl` property](https://learn.microsoft.com/en-us/graph/api/resources/callrecords-callrecord?view=graph-rest-1.0#properties) to retrieve the meeting transcript.)
 
 # Test it
 - Create a new virtual environment
